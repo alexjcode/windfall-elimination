@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "@emotion/styled";
-import DatePicker from "react-datepicker";
+import DatePicker from "react-date-picker";
 import "react-datepicker/dist/react-datepicker.css";
 import { colors } from "../constants";
 import { SessionStore } from "../library/session-store";
 import dayjs from "dayjs";
+import moment from "moment";
 import {
   ButtonLink,
   ButtonLinkGreen,
@@ -18,7 +19,7 @@ const StyledDatePicker = styled(DatePicker)`
   border: 2px solid ${colors.purple};
   height: 60px;
   font-size: 25px;
-  min-width: 230px;
+  min-width: 230  px;
   border-radius: 3px;
 `;
 
@@ -82,22 +83,26 @@ export default class Prescreen1c extends React.Component {
                     <H4>Birthdate</H4>
                     <StyledDatePicker
                     id="birthDatePicked"
-                    placeholderText="Click to select a date"
-                    selected={this.state.birthDate}
+                    placeholderText="MM/YYYY"
+                    dateFormat="MM/YYYY"
+                    value={(this.state.birthDate)}
                     showYearDropdown
                     openToDate={dayjs().subtract(64, 'years').toDate()}
                     onChange={(value) => this.handleDateChange("birthDatePicked", value)}
+                    maxDetail="year"
                     />
-                  </Card>                  
+                  </Card>
                   <Card>
                     <H4>Retire Date</H4>
                     <StyledDatePicker
                     id="retireDatePicked"
-                    placeholderText="Click to select a date"
-                    selected={this.state.retireDate}
+                    placeholderText="MM/YYYY"
+                    dateFormat="MM/YYYY"
+                    value={this.state.retireDate}
                     showYearDropdown
                     openToDate={dayjs().subtract(2, 'years').toDate()}
                     onChange={(value) => this.handleDateChange("retireDatePicked", value)}
+                    maxDetail="year"
                     />
                   </Card>
             </div>
